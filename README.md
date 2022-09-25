@@ -3,7 +3,7 @@
 
 ***Download & Try latest Notes - Note it app apk from below 👇***
 
-[![Notes-Note it](https://img.shields.io/badge/Notes%20Note%20it%20%E2%9C%A8-APK-green.svg?style=for-the-badge&logo=android)](https://github.com/TheCodeMonks/Notzz-App/releases/download/v1.4/Notzz.apk)
+[![Notes-Note it](https://img.shields.io/badge/Notes%20Note%20it%20%E2%9C%A8-APK-green.svg?style=for-the-badge&logo=android)](https://github.com/ayyappankarunan/Notes_Note_it/releases/download/v1.0/notes-note-it.apk)
 
 
 ## Built With 🛠
