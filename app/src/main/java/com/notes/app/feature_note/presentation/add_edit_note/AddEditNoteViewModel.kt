@@ -9,11 +9,13 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.notes.app.R
 import com.notes.app.feature_note.domain.model.InvalidNoteException
 import com.notes.app.feature_note.domain.model.Note
 import com.notes.app.feature_note.domain.use_case.NoteUseCases
 import com.notes.app.feature_note.presentation.util.DELETE_NOTE_CLICKED
 import com.notes.app.feature_note.presentation.util.SAVE_NOTE_CLICKED
+import com.notes.app.feature_note.presentation.util.UiText
 import com.notes.app.feature_note.presentation.util.convertTime
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -27,10 +29,16 @@ class AddEditNoteViewModel @Inject constructor(
     private val firebaseAnalytics: FirebaseAnalytics
 ) : ViewModel() {
 
-    private val _noteTitle = mutableStateOf(NoteTextFieldState(hint = "Title"))
+    private val _noteTitle =
+        mutableStateOf(NoteTextFieldState(hint = UiText.StringResource(R.string.title)))
     val noteTitle: State<NoteTextFieldState> = _noteTitle
 
-    private val _noteContent = mutableStateOf(NoteTextFieldState(hint = "Start Typing..."))
+    private val _noteContent =
+        mutableStateOf(
+            NoteTextFieldState(
+                hint = UiText.StringResource(R.string.start_typing)
+            )
+        )
     val noteContent: State<NoteTextFieldState> = _noteContent
 
     private val _noteUrl = mutableStateOf("")

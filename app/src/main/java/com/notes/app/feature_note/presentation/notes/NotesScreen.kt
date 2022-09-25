@@ -15,9 +15,12 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.notes.app.R
 import com.notes.app.feature_note.presentation.notes.components.NoteItem
 import com.notes.app.feature_note.presentation.notes.components.SortDialog
 import com.notes.app.feature_note.presentation.util.*
@@ -29,6 +32,7 @@ import kotlinx.coroutines.launch
 fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltViewModel()) {
 
     val state = viewModel.state.value
+    val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     var sortDialogState by remember {
@@ -63,7 +67,7 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
         Column {
             TopAppBar(title = {
                 Text(
-                    text = "Notes - Note it",
+                    text = stringResource(id = R.string.app_name),
                     color = MaterialTheme.colors.primary,
                     style = MaterialTheme.typography.h5
                 )
@@ -74,7 +78,7 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
                 }) {
                     Icon(
                         imageVector = Icons.Default.Sort,
-                        contentDescription = "sort notes",
+                        contentDescription = stringResource(id = R.string.sort_notes),
                         tint = MaterialTheme.colors.primary
                     )
                 }
@@ -98,8 +102,8 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             scope.launch {
                                 val result = scaffoldState.snackbarHostState.showSnackbar(
-                                    message = "Note deleted",
-                                    actionLabel = "Undo"
+                                    message = context.getString(R.string.note_deleted),
+                                    actionLabel = context.getString(R.string.undo)
                                 )
                                 if (result == SnackbarResult.ActionPerformed) {
                                     viewModel.onEvent(NotesEvent.RestoreNote)

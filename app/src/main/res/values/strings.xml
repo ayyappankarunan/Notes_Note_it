@@ -1,3 +1,27 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Notes - Note it</string>
+    <string name="sort_notes">sort notes</string>
+    <string name="note_deleted">Note deleted</string>
+    <string name="undo">Undo</string>
+    <string name="selected_color">selected color</string>
+    <string name="add_url">Add Url</string>
+    <string name="edit_url">Edit Url</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="save_note">Save Note</string>
+    <string name="menu">Menu</string>
+    <string name="go_back">Go Back</string>
+    <string name="link">Link</string>
+    <string name="leave_note">Leave Note ?</string>
+    <string name="leave_note_desc">Changes you made may not be saved</string>
+    <string name="leave">LEAVE</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="add">ADD</string>
+    <string name="delete_note_qn">Delete Note ?</string>
+    <string name="delete_note_desc">Are you sure you want to delete ?</string>
+    <string name="delete">DELETE</string>
+    <string name="no">NO</string>
+    <string name="title">Title</string>
+    <string name="start_typing">Start Typing…</string>
+    <string name="empty_string" />
+    <string name="try_again_message">Try again after sometime</string>
 </resources>

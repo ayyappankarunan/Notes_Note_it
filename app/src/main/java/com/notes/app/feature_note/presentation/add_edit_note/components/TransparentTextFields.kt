@@ -12,11 +12,12 @@ import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
+import com.notes.app.feature_note.presentation.util.UiText
 
 @Composable
 fun TransparentTextFields(
     text: String,
-    hint: String,
+    hint: UiText.StringResource,
     modifier: Modifier = Modifier,
     isHintVisible: Boolean = true,
     onValueChange: (String) -> Unit,
@@ -44,7 +45,7 @@ fun TransparentTextFields(
             maxLines = maxLines,
         )
         if (isHintVisible) {
-            Text(text = hint, style = textStyle, color = MaterialTheme.colors.primary)
+            Text(text = hint.asString(), style = textStyle, color = MaterialTheme.colors.primary)
         }
     }
 }

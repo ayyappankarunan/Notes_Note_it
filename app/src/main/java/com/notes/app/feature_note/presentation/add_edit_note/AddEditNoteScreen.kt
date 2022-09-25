@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -30,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.notes.app.R
 import com.notes.app.feature_note.domain.model.Note
 import com.notes.app.feature_note.presentation.add_edit_note.components.BasicDialog
 import com.notes.app.feature_note.presentation.add_edit_note.components.TextFieldDialog
@@ -137,7 +139,7 @@ fun AddEditNoteScreen(
                             if (color == viewModel.noteColor.value)
                                 Icon(
                                     imageVector = Icons.Default.Done,
-                                    contentDescription = "selected color",
+                                    contentDescription = stringResource(id = R.string.selected_color),
                                     tint = MaterialTheme.colors.primary, modifier = Modifier.align(
                                         Alignment.Center
                                     )
@@ -155,14 +157,16 @@ fun AddEditNoteScreen(
                 ) {
                     Icon(
                         Icons.Default.Link,
-                        "add URL",
+                        stringResource(id = R.string.add_url),
                         modifier = Modifier
                             .padding(14.dp)
                             .size(20.dp),
                         tint = MaterialTheme.colors.primary,
                     )
                     Text(
-                        if (urlState.isEmpty()) "Add Url" else "Edit Url",
+                        if (urlState.isEmpty()) stringResource(id = R.string.add_url) else stringResource(
+                            id = R.string.edit_url
+                        ),
                         style = TextStyle(
                             color = MaterialTheme.colors.primary,
                             fontWeight = FontWeight.SemiBold,
@@ -180,14 +184,14 @@ fun AddEditNoteScreen(
                 ) {
                     Icon(
                         Icons.Default.Delete,
-                        "delete note",
+                        stringResource(id = R.string.delete_note),
                         modifier = Modifier
                             .padding(14.dp)
                             .size(20.dp),
                         tint = Color.Red,
                     )
                     Text(
-                        "Delete Note",
+                        stringResource(id = R.string.delete_note),
                         style = TextStyle(
                             color = Color.Red,
                             fontWeight = FontWeight.SemiBold,
@@ -216,7 +220,7 @@ fun AddEditNoteScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Done,
-                        contentDescription = "save note",
+                        contentDescription = stringResource(id = R.string.save_note),
                         tint = MaterialTheme.colors.primary
                     )
                 }
@@ -236,7 +240,7 @@ fun AddEditNoteScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Default.Menu,
-                            contentDescription = "Menu",
+                            contentDescription = stringResource(id = R.string.menu),
                             tint = MaterialTheme.colors.primary
                         )
                     }
@@ -247,7 +251,7 @@ fun AddEditNoteScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "go back",
+                            contentDescription = stringResource(id = R.string.go_back),
                             tint = MaterialTheme.colors.primary
                         )
                     }
@@ -299,7 +303,7 @@ fun AddEditNoteScreen(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Link,
-                            contentDescription = "link",
+                            contentDescription = stringResource(id = R.string.link),
                             tint = noteColorAnimated.value
                         )
                         Text(
@@ -347,10 +351,10 @@ fun AddEditNoteScreen(
     if (exitDialogState) {
         BasicDialog(
             onDismissRequest = { exitDialogState = false },
-            title = "Leave note?",
-            description = "Changes you made may not be saved",
-            confirmText = "LEAVE",
-            dismissText = "CANCEL",
+            title = stringResource(id = R.string.leave_note),
+            description = stringResource(id = R.string.leave_note_desc),
+            confirmText = stringResource(id = R.string.leave),
+            dismissText = stringResource(id = R.string.cancel),
             confirmRequest = {
                 exitDialogState = false
                 navController.navigateUp()
@@ -361,10 +365,12 @@ fun AddEditNoteScreen(
         TextFieldDialog(
             onDismissRequest = { addEditUrlDialogState = false },
             defaultText = urlState,
-            title = if (urlState.isEmpty()) "Add Url" else "Edit Url",
+            title = if (urlState.isEmpty()) stringResource(id = R.string.add_url) else stringResource(
+                id = R.string.edit_url
+            ),
             icon = Icons.Default.Link,
-            confirmText = "ADD",
-            dismissText = "CANCEL",
+            confirmText = stringResource(id = R.string.add),
+            dismissText = stringResource(id = R.string.cancel),
             confirmRequest = {
                 viewModel.onEvent(AddEditNoteEvent.EnteredUrl(it))
                 addEditUrlDialogState = false
@@ -374,10 +380,10 @@ fun AddEditNoteScreen(
     if (deleteDialogState) {
         BasicDialog(
             onDismissRequest = { deleteDialogState = false },
-            title = "Delete note ?",
-            description = "Are you sure you want to delete ?",
-            confirmText = "DELETE",
-            dismissText = "NO",
+            title = stringResource(id = R.string.delete_note_qn),
+            description = stringResource(id = R.string.delete_note_desc),
+            confirmText = stringResource(id = R.string.delete),
+            dismissText = stringResource(id = R.string.no),
             confirmRequest = {
                 viewModel.onEvent(AddEditNoteEvent.DeleteNote)
                 deleteDialogState = false
